@@ -1,0 +1,116 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #F5F5F7;
+}
+
+/* navbar active link style */
+#sidebar a.active {
+    text-decoration: underline !important;
+    text-decoration-color: red !important;
+    color: #1b69ad;
+    font-weight: 600;
+}
+
+/*================================= upload image container width ================ */
+/* .upload-container, .ant-upload, .ant-btn {
+    width: 100% !important;
+  } */
+
+
+/* banner button hover effect remove */
+.no-hover:hover {
+    background-color: #1b69ad !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    color: white !important;
+}
+
+@media (max-width: 640px) {
+    .small-button {
+      width: 180px !important;
+      height: 50px !important;
+      font-size: 16px !important;
+    }
+  }
+
+
+
+
+
+
+
+/* Default tab text color */
+.custom-tabs .ant-tabs-tab {
+    color: #4E5D6B;
+    font-weight: 500;
+}
+
+/* Active tab text color */
+.custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #1b69ad !important;
+    font-weight: bold;
+}
+
+/* Active tab bottom border */
+.custom-tabs .ant-tabs-ink-bar {
+    background-color: #1b69ad !important;
+}
+
+/* Hover tab text color */
+.custom-tabs .ant-tabs-tab:hover .ant-tabs-tab-btn {
+    color: #1b69ad !important;
+}
+
+
+
+/* upload image field style start */
+.upload-component .ant-upload {
+    width: 100% !important;
+}
+
+.upload-component .ant-btn {
+    width: 100% !important;
+}
+
+/* upload image field style end */
+
+
+/* user profile upload for continue button style */
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+/* jodit editor */
+.jodit,
+.jodit-container * {
+  /* background: #2e2d2d !important; */
+  /* color: wheat !important; */
+  border: none !important;
+
+}
+
+
+.jodit-react-container .jodit-wysiwyg{
+  min-height: 300px !important;
+}
