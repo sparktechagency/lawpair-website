@@ -228,7 +228,6 @@ const Sidebar = () => {
         if (response.data.success) {
           Cookies.remove("adminToken");
           navigate("/admin/dashboard/login");
-          Swal.fire("Deleted", "Sucessfully Deleted Your Account.", "success");
         }
       } catch (error) {
         toast.error(error.message, "Logged out Failed");
