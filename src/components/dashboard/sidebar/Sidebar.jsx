@@ -225,6 +225,7 @@ const Sidebar = () => {
             // ✅ Send token in Authorization header
           },
         });
+        console.log(response)
         if (response.data.success) {
           Cookies.remove("adminToken");
           navigate("/admin/dashboard/login");
@@ -234,6 +235,9 @@ const Sidebar = () => {
       }
     }
   };
+
+
+
 
   return (
     <>

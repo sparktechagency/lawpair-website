@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 const DashboardLegalResources = () => {
   const axiosPublic = useAxiosPublic();
   const [form] = Form.useForm();
+  const [loading, setloading] = useState(false)
   const [fileList, setFileList] = useState([])
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -17,9 +18,9 @@ const DashboardLegalResources = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalLegalResurces, setTotalLegalResurces] = useState(0);
-  const perPage = 3;
+  const [perPage, setPerPage] = useState(4);
 
-console.log(data)
+
 
   const handleUpload = ({ fileList }) => {
     if (fileList.length > 1) {
@@ -30,7 +31,13 @@ console.log(data)
   }
   const token = Cookies.get("adminToken");
 
+
+
+
+
+
   const handleLegalResurce = async (values) => {
+    // setloading(true)
     const formData = new FormData();
 
     // Append image file
@@ -79,6 +86,8 @@ console.log(data)
 
     } catch (error) {
       console.error("Error:", error.response ? error.response.data : error.message);
+    } finally {
+      // setloading(false)
     }
   };
 
@@ -100,7 +109,7 @@ console.log(data)
       .catch((error) => {
         console.error("Error fetching dashboard users:", error);
       });
-  }, [token, currentPage, fileList]);
+  }, [token, perPage, currentPage, fileList]);
 
 
   const showDeleteModal = (record) => {
@@ -171,6 +180,11 @@ console.log(data)
       title: "Description",
       dataIndex: "description",
       key: "description",
+      render: (text) => {
+        const words = text?.split(" ");
+        const limitedText = words?.slice(0, 20)?.join(" ");
+        return words?.length > 20 ? `${limitedText}...` : limitedText;
+      },
     },
     {
       title: "Action",
@@ -261,6 +275,7 @@ console.log(data)
           htmlType="submit"
           block
           style={{ backgroundColor: "#1E73BE", color: "white", fontFamily: "Roboto", padding: "24px", fontSize: "16px", fontWeight: "bold" }}
+          loading={loading}
         >
           Add
         </Button>
@@ -277,12 +292,23 @@ console.log(data)
       </div>
 
       {/* pagination component */}
-      <Pagination
+      {/* <Pagination
         current={currentPage}
         total={totalLegalResurces}
         pageSize={perPage}
         onChange={handlePageChange}
         showSizeChanger={false}
+        align="end"
+        className="my-4"
+      /> */}
+      <Pagination
+        current={currentPage}
+        pageSize={perPage}
+        total={data?.data?.total || 0}
+        onChange={(page, pageSize) => {
+          setCurrentPage(page)
+          setPerPage(pageSize)
+        }}
         align="end"
         className="my-4"
       />
