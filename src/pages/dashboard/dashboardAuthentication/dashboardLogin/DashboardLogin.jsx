@@ -19,12 +19,13 @@ const DashboardLogin = () => {
 
     try {
       const response = await axiosPublic.post("/login", loginInfo);
+      console.log(response)
       if (response.data.success) {
         Cookies.set("adminToken", response?.data?.access_token, { expires: 7 });
-        toast.success("login success");
+        toast.success(response?.data?.message);
         navigate("/admin/dashboard");
       } else {
-        toast.error("login failed");
+        toast.error(response?.data?.message);
       }
     } catch (error) {
       toast.error("Login Error. plz try again");
