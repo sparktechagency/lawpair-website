@@ -1,4 +1,4 @@
-import { EnvironmentOutlined, PhoneOutlined, UploadOutlined, UserOutlined } from "@ant-design/icons";
+import { EnvironmentOutlined, PhoneOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Upload, } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -14,6 +14,7 @@ import { UploadCloud } from "lucide-react";
 const DashboardPersonalInformation = () => {
   const axiosPublic = useAxiosPublic();
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false)
   const [passwordForm] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ImageFileList, setImageFileList] = useState([]);
@@ -69,10 +70,12 @@ const DashboardPersonalInformation = () => {
   const token = Cookies.get("adminToken");
 
   const onFinish = async (values) => {
+    setLoading(true)
+
+
+
 
     const formData = new FormData();
-
-
 
     if (ImageFileList.length > 0) {
       const uploadedFile = ImageFileList.find(file => file.originFileObj);
@@ -104,21 +107,23 @@ const DashboardPersonalInformation = () => {
           Accept: "application/json", "Content-Type": "multipart/form-data",
         },
       });
+      console.log(response)
       if (response.data.success) {
+        window.location.reload();
         toast.success('Profile updated successfully')
         form.resetFields();
         setFileList([]);
-        setTimeout(() => {
-          window.location.href = '/admin/dashboard/'; // or your main dashboard route
-        }, 1000);
-
       } else {
         toast.error('The avatar must be less than 2MB.');
       }
 
       setIsModalOpen(false);
-    } catch (error) {
-      console.error('Error during password update:', error);
+    } catch (errors) {
+     if(errors){
+     toast.error(errors?.message)
+     }
+    }finally{
+       setLoading(false)
     }
   };
 
@@ -202,6 +207,32 @@ const DashboardPersonalInformation = () => {
                 </div>
               </Upload>
             </Form.Item>
+            
+            {/* <Form.Item
+              className="md:col-span-2"
+              name="image"
+              rules={[
+                {
+                  required: ImageFileList?.length === 0,
+                  message: "Image required",
+                },
+              ]}
+            >
+              <Upload
+                beforeUpload={() => false}
+                accept="image/*"
+                maxCount={1}
+                showUploadList={{ showPreviewIcon: true }}
+                fileList={ImageFileList}
+                onChange={({ fileList }) => setImageFileList(fileList)}
+                listType="picture-card"
+              >
+                <div className="flex flex-col items-center">
+                  <UploadCloud className="w-5 h-5 text-gray-400" />
+                  <span className="mt-2">Choose File</span>
+                </div>
+              </Upload>
+            </Form.Item> */}
           </div>
         </div>
 
@@ -273,7 +304,9 @@ const DashboardPersonalInformation = () => {
           block
           style={{ backgroundColor: "#1E73BE", color: "white", fontFamily: "Roboto", padding: "24px", fontSize: "16px", fontWeight: "bold" }}
         >
-          Save changes
+          {
+            loading ? 'Loading......' : 'Save changes'
+          }
         </Button>
       </Form>
 
