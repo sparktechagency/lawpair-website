@@ -69,7 +69,7 @@ const AddCategories = () => {
       dataIndex: "name",
       responsive: ["xs", "sm", "md", "lg", "xl"],
       render: (name) => (
-        <span>{name.length > 20 ? `${name.slice(0, 20)}...` : name}</span>
+        <span>{name?.length > 20 ? `${name?.slice(0, 20)}...` : name}</span>
       ),
     },
     {
@@ -78,7 +78,7 @@ const AddCategories = () => {
       dataIndex: "description",
       responsive: ["xs", "sm", "md", "lg", "xl"],
       render: (text) => (
-        <span>{text.length > 20 ? `${text.slice(0, 20)}...` : text}</span>
+        <span>{text?.length > 20 ? `${text?.slice(0, 20)}...` : text}</span>
       ),
     },
     {
@@ -157,7 +157,7 @@ const AddCategories = () => {
   };
 
   const handleUpload = ({ fileList }) => {
-    if (fileList.length > 1) {
+    if (fileList?.length > 1) {
       message.error("You can only upload one image");
       return;
     }
@@ -272,7 +272,7 @@ const AddCategories = () => {
                 onChange={handleUpload}
                 fileList={fileList}
               >
-                {fileList.length >= 1 ? null : (
+                {fileList?.length >= 1 ? null : (
                   <div style={{ textAlign: "center" }}>
                     <UploadOutlined style={{ fontSize: 24 }} />
                     <div>Upload photo</div>
