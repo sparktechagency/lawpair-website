@@ -225,16 +225,19 @@ const Sidebar = () => {
             // ✅ Send token in Authorization header
           },
         });
+        console.log(response)
         if (response.data.success) {
           Cookies.remove("adminToken");
           navigate("/admin/dashboard/login");
-          Swal.fire("Deleted", "Sucessfully Deleted Your Account.", "success");
         }
       } catch (error) {
         toast.error(error.message, "Logged out Failed");
       }
     }
   };
+
+
+
 
   return (
     <>

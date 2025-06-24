@@ -177,7 +177,7 @@ const CommonLayout = () => {
     <div>
       <div className="flex items-center gap-2 pb-[20px]">
         <h1 className="font-roboto text-[20px] md:text-[40px] font-bold text-[#10101E]">
-          Hello, Papatundee
+          Hello, Babatunde
         </h1>
         <img src="/logo/hand.png" alt="" />
       </div>
@@ -196,21 +196,19 @@ const CommonLayout = () => {
               <div
                 onClick={() => handleClick(item)}
                 key={index}
-                className="h-[151px] p-5 border rounded-lg hover:border-2 hover:border-primary transition-all duration-300 ease-in-out transform hover:scale-105"
+                className=" items-center p-5 border rounded-lg hover:border-2 hover:border-primary transition-all duration-300 ease-in-out transform hover:scale-105"
               >
-                <div className="flex items-center gap-1 pb-[12px]">
-                  {item.icon1}
-                  <h1 className="font-roboto text-[18px] font-bold">
-                    {item.name}
-                  </h1>
+
+                <div className="">
+                  <div className="flex items-center gap-3">
+                    <p>{item.icon1}</p>
+                    <p className="font-roboto text-[18px] font-bold">{item.name}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <p className="font-roboto text-[26px] font-bold">{item.subscribe}</p>
+                    <p>{item.icon2}</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 pb-[4px]">
-                  <h1 className="font-roboto text-[26px] font-bold">
-                    {item.subscribe || 0}
-                  </h1>
-                  {item.icon2}
-                </div>
-                {/* <p className="font-roboto text[12px]">{item.title}</p> */}
               </div>
             );
           })}

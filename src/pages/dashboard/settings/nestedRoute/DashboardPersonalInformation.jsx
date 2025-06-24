@@ -101,14 +101,16 @@ const DashboardPersonalInformation = () => {
       const response = await axiosPublic.post('/update-profile', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          Accept: "application/json","Content-Type": "multipart/form-data",
+          Accept: "application/json", "Content-Type": "multipart/form-data",
         },
       });
-console.log(response.data)
       if (response.data.success) {
         toast.success('Profile updated successfully')
         form.resetFields();
         setFileList([]);
+        setTimeout(() => {
+          window.location.href = '/admin/dashboard/'; // or your main dashboard route
+        }, 1000);
 
       } else {
         toast.error('The avatar must be less than 2MB.');
@@ -208,7 +210,7 @@ console.log(response.data)
         <div className="flex justify-between gap-3">
           <Form.Item
             name="first_name"
-            rules={[{ required: true, message: "Please enter your First name" }]}
+            // rules={[{ required: true, message: "Please enter your First name" }]}
             style={{ width: "50%" }}
           >
             <Input
@@ -222,7 +224,7 @@ console.log(response.data)
 
           <Form.Item
             name="last_name"
-            rules={[{ required: true, message: "Please enter your Last name" }]}
+            // rules={[{ required: true, message: "Please enter your Last name" }]}
             style={{ width: "50%" }}
           >
             <Input
@@ -238,7 +240,7 @@ console.log(response.data)
         <div>
           <Form.Item
             name="phone"
-            rules={[{ required: true, message: "Please enter your contact number" }]}
+          // rules={[{ required: true, message: "Please enter your contact number" }]}
           // style={{ width: "50%" }}
           >
             <Input
@@ -254,7 +256,7 @@ console.log(response.data)
         <div>
           <Form.Item
             name="address"
-            rules={[{ required: true, message: "Please enter your Location" }]}
+          // rules={[{ required: true, message: "Please enter your Location" }]}
           // style={{ width: "50%" }}
           >
             <Input
