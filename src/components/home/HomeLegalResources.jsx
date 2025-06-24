@@ -58,10 +58,12 @@ const HomeLegalResources = () => {
                 <div className="absolute bottom-2 left-0 p-[24px] w-full text-white">
                   <h2 className="text-lg font-bold">{item.title}</h2>
                   <p className="text-sm">
-                    {" "}
-                    {item.description.length > 49
-                      ? `${item.description.slice(0, 65)}.`
-                      : item.description}
+                    <p className="text-sm">
+                      {" "}
+                      {item.description.length > 74
+                        ? `${item.description.slice(0, 74)}.`
+                        : item.description}
+                    </p>
                   </p>
                   <button
                     onClick={() => handleClick(item.id)}
