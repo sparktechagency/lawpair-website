@@ -10,7 +10,7 @@ const HomeLegalResources = () => {
 
   const adminToken = Cookies.get("adminToken");
 
-  // get requestt //
+  // get requestt 
   useEffect(() => {
     axiosPublic
       .get("/admin/legal-resources/?per_page=10", {
